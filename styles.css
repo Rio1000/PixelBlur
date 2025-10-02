@@ -8,18 +8,20 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: auto;
     padding: 16px;
     z-index: 100;
     background-image: linear-gradient(to bottom, #000000, #00000000);
-}   
+}
 
 #nav {
     display: flex;
-    list-style: none;
+    align-items: center;
     margin-right: 65px;
-    padding: 0;
 }
-.menu-toggle {
+
+.menu-toggle,
+.close-btn {
     display: none;
     font-size: 28px;
     background: none;
@@ -27,6 +29,7 @@ header {
     color: white;
     cursor: pointer;
 }
+
 #nav li a {
     margin-left: 24px;
     text-decoration: none;
@@ -41,7 +44,8 @@ header {
 #nav li a:hover {
     font-size: 18px;
 }
-.main{
+
+.main {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -55,11 +59,16 @@ header {
     width: 100%;
     overflow-y: hidden;
 }
-#logo{
-    opacity: 0.9    ;
+
+#logo {
+    opacity: 0.9;
     height: 150px;
     filter: drop-shadow(2px 4px 6px black);
+    content: url("PBLOGODARK.png");
 }
+
+/* Mobile logo */
+
 
 .hero-image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("DECOPHOTO1.jpeg");
@@ -68,8 +77,9 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    
+
 }
+
 .container {
     width: 100%;
     background-color: tomato;
@@ -90,6 +100,7 @@ header {
     color: white;
     padding-bottom: 100px;
 }
+
 .hero-text h1 {
 
     font-size: 64px;
@@ -113,12 +124,15 @@ header {
 .btn:hover {
     font-size: 20px;
 }
-#NEWREL{
+
+#NEWREL {
     background-image: url("DECOPHOTO3.jpeg");
 }
-#SHTFIL{
+
+#SHTFIL {
     background-image: url("DECOPHOTO2.jpeg");
 }
+
 #NEWREL,
 #SHTFIL {
     color: white;
@@ -126,10 +140,13 @@ header {
     padding: 20px;
     font-size: 24px;
     display: flex;
-    justify-content: center;   /* centers horizontally */
-    align-items: center;       /* centers vertically */
+    justify-content: center;
+    /* centers horizontally */
+    align-items: center;
+    /* centers vertically */
     gap: 20px;
-    flex-wrap: wrap;           /* allows wrapping on small screens */
+    flex-wrap: wrap;
+    /* allows wrapping on small screens */
     background-color: bisque;
     width: 100%;
     min-height: calc(70vh - 40px);
@@ -163,6 +180,7 @@ header {
 
 /* Tablet */
 @media (max-width: 1024px) {
+
     #NEWREL a,
     #SHTFIL a {
         font-size: 36px;
@@ -171,18 +189,107 @@ header {
 }
 
 /* Mobile */
-@media (max-width: 600px) {
-    #NEWREL,
-    #SHTFIL {
-        flex-direction: column;   /* stack links vertically */
-        gap: 15px;
+@media (max-width: 500px) {
+    body {
+        overflow-y: scroll;
+    }
+
+    ;
+
+    .container {
+        flex-direction: column;
+        /* stack links vertically */
+    }
+
+    #logo {
+        height: 70px;
+        /* scale down if needed */
+        content: url("PBLogoSmall.png");
+        /* <-- replace with your mobile logo */
+        border-radius: 18px;
+    }
+
+    .no-scroll {
+        overflow: hidden;
     }
 
     #NEWREL a,
     #SHTFIL a {
         font-size: 24px;
         padding: 12px 24px;
-        width: 80%;              /* makes links fit nicely on mobile */
+        width: 80%;
+        /* makes links fit nicely on mobile */
         text-align: center;
+    }
+
+    #nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* hidden off-screen */
+        height: 100%;
+        width: 100%;
+        /* fullscreen */
+        background: rgba(6, 0, 22, 0.45);
+        /* dark overlay background */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        z-index: 999;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+    }
+
+    #nav.show {
+        right: 0;
+        /* slide into view */
+        overflow: hidden;
+    }
+
+    /* nav links */
+    #nav li {
+        margin: 20px 0;
+    }
+
+    #nav li a {
+        font-size: 32px;
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        width: 100%;
+    }
+
+    #nav li a:hover {
+        color: tomato;
+    }
+
+    /* hamburger button */
+    .menu-toggle {
+        display: flex;
+        font-size: 32px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    /* Close button inside sidenav */
+    .close-btn {
+        display: flex;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+        border: none;
+        background: none;
     }
 }
